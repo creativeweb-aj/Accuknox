@@ -82,4 +82,4 @@ Once imported, you can start testing the APIs using the predefined requests.
 
 ## Conclusion
 
-You have successfully set up the Social Network App for Accuknox on your local development environment. For further customization and development, refer to the project documentation.
+You have successfully set up the Social Network App for Accuknox on your local development environment. Refer to the Postman collection for testing the APIs and to the project documentation for further customization and development.
