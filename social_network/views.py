@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
+from django.core.cache import cache
 from users.models import User
 from .models import FriendRequest
 from .serializers import FriendRequestSerializer
@@ -10,6 +11,19 @@ from .serializers import FriendRequestSerializer
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def sendFriendRequest(request, id):
+    # Custom rate limit key
+    rate_limit_key = f"send_friend_request_{request.user.id}"
+    rate_limit = cache.get(rate_limit_key, 0)
+
+    # Check if rate limit exceeded 3 requests per minute
+    if rate_limit >= 3:
+        data = {
+            "status": "FAIL",
+            "data": None,
+            "message": "Rate limit exceeded. Try again in a minute."
+        }
+        return Response(data=data, status=status.HTTP_429_TOO_MANY_REQUESTS)
+
     from_user = request.user
     to_user_id = id
 
@@ -70,6 +84,9 @@ def sendFriendRequest(request, id):
         "data": serializer.data,
         "message": "Friend request is sent!"
     }
+
+    # After successfully creating the friend request, increment the rate limit counter
+    cache.set(rate_limit_key, rate_limit + 1, timeout=60)  # Increment and set a 60-second timeout
     return Response(data=data, status=status.HTTP_201_CREATED)
 
 
