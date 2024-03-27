@@ -47,9 +47,13 @@ Install all the required packages from the `requirements.txt` file:
 Copy the content from the `example.env` file to a new file named `.env` in the project's root directory. This file should contain your database and secret key configurations. Update the `.env` file with your database details:
 
 DATABASE_NAME=accuknox_db
+
 DATABASE_USER=postgres
+
 DATABASE_PASSWORD=12345
+
 DATABASE_HOST=localhost
+
 DATABASE_PORT=5432
 
 
