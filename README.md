@@ -14,7 +14,7 @@ Before you begin, ensure you have Python 3.9.6 installed on your system. If you 
 
 Start by cloning the repository to your local machine. Open a terminal and run the following command:
 
-git clone <repository-url>
+git clone `<repository-url>`
 
 Replace `<repository-url>` with the actual URL of the repository.
 
