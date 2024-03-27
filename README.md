@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project is a social networking application developed for Accuknox. Follow the setup instructions below to get the project up and running on your local machine.
+This project is a social networking application developed for Accuknox. It comes with a Postman collection for easy API testing and interaction.
 
 ## Prerequisites
 
@@ -72,6 +72,13 @@ Finally, start the Django development server:
 
 
 The application will now be running and accessible at `http://0.0.0.0:8001`.
+
+### 7. Postman Collection
+
+The project includes a Postman collection in `postman` folder that contains all the APIs you can use to interact with the application.
+
+
+Once imported, you can start testing the APIs using the predefined requests.
 
 ## Conclusion
 
