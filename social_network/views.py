@@ -7,7 +7,7 @@ from .models import FriendRequest
 from .serializers import FriendRequestSerializer
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def sendFriendRequest(request, id):
     from_user = request.user
@@ -71,3 +71,76 @@ def sendFriendRequest(request, id):
         "message": "Friend request is sent!"
     }
     return Response(data=data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def friendRequestAction(request, id):
+    action = request.data.get('action', None)
+    if action is None or action == "":
+        data = {
+            "status": "FAIL",
+            "data": None,
+            "message": "Please send action for friend request!"
+        }
+        return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        if action not in ["accepted", "rejected"]:
+            data = {
+                "status": "FAIL",
+                "data": None,
+                "message": "Please send right action for friend request!"
+            }
+            return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
+
+    friend = FriendRequest.objects.filter(id=id, to_user=request.user).first()
+    if friend is None:
+        data = {
+            "status": "FAIL",
+            "data": None,
+            "message": "Friend request not found!"
+        }
+        return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        friend.status = action
+        friend.save()
+        if action == "accepted":
+            data = {
+                "status": "SUCCESS",
+                "data": None,
+                "message": "Friend request accepted!"
+            }
+            return Response(data=data, status=status.HTTP_200_OK)
+        else:
+            data = {
+                "status": "SUCCESS",
+                "data": None,
+                "message": "Friend request rejected!"
+            }
+            return Response(data=data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def friendList(request):
+    friends = FriendRequest.objects.filter(to_user=request.user, status="accepted").order_by("-created_at")
+    friendRequestSerializer = FriendRequestSerializer(friends, many=True)
+    data = {
+        "status": "SUCCESS",
+        "data": {"friends": friendRequestSerializer.data},
+        "message": "Friends list has been sent!"
+    }
+    return Response(data=data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def pendingFriendRequests(request):
+    friends = FriendRequest.objects.filter(to_user=request.user, status="pending").order_by("-created_at")
+    friendRequestSerializer = FriendRequestSerializer(friends, many=True)
+    data = {
+        "status": "SUCCESS",
+        "data": {"pending": friendRequestSerializer.data},
+        "message": "Pending friend requests has been sent!"
+    }
+    return Response(data=data, status=status.HTTP_200_OK)

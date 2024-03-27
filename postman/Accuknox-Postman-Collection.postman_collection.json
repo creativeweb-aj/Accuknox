@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "c9e4ce65-e2ec-4c17-91f5-8a280904253b",
+		"name": "Accuknox-Postman-Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31599735"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ajay\",\n    \"email\": \"ajay@mailinator.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8001/user/signup",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8001",
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ajay@mailinator.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8001/user/login",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8001",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzMDg4NDk1LCJpYXQiOjE3MTE1NTI0OTUsImp0aSI6ImE4YjU0NTdhNzJjNjQ1Yjk5NmUzMjNjNDMzMmQ1ZGQ2IiwidXNlcl9pZCI6MTF9.xVHeymP4YfsFZ7U_x8wEIxxJdEH5gJgFJw5wLmGD7F8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:8001/user/?search=k",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8001",
+							"path": [
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "k"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "social-network",
+			"item": [
+				{
+					"name": "send-friend-request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzMDg4MDMyLCJpYXQiOjE3MTE1NTIwMzIsImp0aSI6IjQ4ZGMwYjMzMWUzOTQ4ODlhNDQ5NGYzMTdmY2VlYzA0IiwidXNlcl9pZCI6MTB9.p1N-ZsN02QJUFDZDVqXg1HSZb7HANSn5AQnS0rt5OG0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:8001/social-network/send-friend-request/11",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8001",
+							"path": [
+								"social-network",
+								"send-friend-request",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "friend-request-action",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzMDg4MDMyLCJpYXQiOjE3MTE1NTIwMzIsImp0aSI6IjQ4ZGMwYjMzMWUzOTQ4ODlhNDQ5NGYzMTdmY2VlYzA0IiwidXNlcl9pZCI6MTB9.p1N-ZsN02QJUFDZDVqXg1HSZb7HANSn5AQnS0rt5OG0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\": \"accepted\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8001/social-network/friend-request-action/1",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8001",
+							"path": [
+								"social-network",
+								"friend-request-action",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "friends",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzMDg4MDMyLCJpYXQiOjE3MTE1NTIwMzIsImp0aSI6IjQ4ZGMwYjMzMWUzOTQ4ODlhNDQ5NGYzMTdmY2VlYzA0IiwidXNlcl9pZCI6MTB9.p1N-ZsN02QJUFDZDVqXg1HSZb7HANSn5AQnS0rt5OG0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:8001/social-network/friends",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8001",
+							"path": [
+								"social-network",
+								"friends"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pending-friend-requests",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzMDg4MjczLCJpYXQiOjE3MTE1NTIyNzMsImp0aSI6Ijk3ZTM2N2Q5OTllNzQ5MmJiYzAzNzI1MWM4YzEwYzRlIiwidXNlcl9pZCI6MTF9.bi8zreTxnNpAShTtFsH6AyQsecuLQ9QUwu4yDitGZJc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:8001/social-network/pending-friend-requests",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8001",
+							"path": [
+								"social-network",
+								"pending-friend-requests"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

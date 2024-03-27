@@ -59,7 +59,7 @@ def login(request):
 @permission_classes([IsAuthenticated])
 def userList(request):
     search = request.query_params.get('search', None)
-    users = User.objects.all().order_by('-created_at')
+    users = User.objects.exclude(id=request.user.id).order_by('-created_at')
 
     if search:
         # Check if the search is an exact email match
