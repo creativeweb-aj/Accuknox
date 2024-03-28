@@ -59,6 +59,7 @@ def login(request):
 @permission_classes([IsAuthenticated])
 def userList(request):
     search = request.query_params.get('search', None)
+    search = search.lower()
     users = User.objects.exclude(id=request.user.id).order_by('-created_at')
 
     if search:

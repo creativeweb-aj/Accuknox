@@ -140,7 +140,7 @@ def friendRequestAction(request, id):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def friendList(request):
-    friends = FriendRequest.objects.filter(to_user=request.user, status="accepted").order_by("-created_at")
+    friends = FriendRequest.objects.filter(from_user=request.user, status="accepted").order_by("-created_at")
     friendRequestSerializer = FriendRequestSerializer(friends, many=True)
     data = {
         "status": "SUCCESS",
